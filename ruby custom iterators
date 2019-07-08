@@ -1,0 +1,29 @@
+Below are the two sammple iterators which can be widely used
+
+1) Normal iterator which just prints the block given
+class Array
+    def custom_iterator
+        return self.dup unless block_given?
+        a = []
+        self.each do |e|
+            a << e
+        end
+        a
+    end
+end
+
+usage: [1, 2, 3, 4, 5].custom_iterator {|x| x}
+
+2) Custom iterator which performs operations on the block provided
+class Array
+    def custom_iterator2
+        return self.dup unless block_given?
+        a = []
+        self.each do |e|
+            a << yield(e)
+        end
+        a
+    end
+end
+
+usage: [1, 2, 3, 4, 5].custom_iterator {|x| x * 2}
